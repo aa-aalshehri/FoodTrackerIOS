@@ -7,15 +7,30 @@
 //
 
 import UIKit
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        BITHockeyManager.shared().configure(withIdentifier: "e1db519bc5a444e49b6f4d375bb50511");
+        BITHockeyManager.shared().authenticator.identificationType = BITAuthenticatorIdentificationType.device
+        BITHockeyManager.shared().start();
+        BITHockeyManager.shared().authenticator.authenticateInstallation();
+        BITHockeyManager.shared().testIdentifier();
+        
+        // Orginal copy for HockeyApp Setup, but it did not work
+        
+//        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("e1db519bc5a444e49b6f4d375bb50511")
+//        // Do some additional configuration if needed here
+//        BITHockeyManager.sharedHockeyManager().startManager()
+//        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
         return true
     }
 
